@@ -19,8 +19,8 @@
         const found = await User.findOne({email:data.email});
         if(found){
         return "Login Successful";
-        }else{
-        return "User not Found";
+        } else{
+            throw new Error("User not Found");
         }
     }catch(err){
       throw err;
