@@ -6,8 +6,9 @@ const createUser = async (data) => {
   try {
     const hashPassword = await bcrypt.hash(data.password, 12);
     const user = new User({ ...data, password: hashPassword });
-    await user.save();
-    return "User Created Successfully";
+    const newUser = await user.save();
+    const token = jwt.sign({_id:newUser._id, email: newUser.email},"user!",{ expiresIn: '1h' })
+    return ({message:"User Created Successfully", newUser ,token});
   } catch (err) {
     return "User Already Exist";
   }
@@ -25,7 +26,8 @@ const loginUser = async (data) => {
       );
       if (comparePassword) {
         delete userFound.password;
-        return ("Login Successful", userFound);
+        const token = jwt.sign({_id:userFound._id, email: userFound.email},"user!",{ expiresIn: '1h' })
+        return ({message:"Login Successful", userFound, token});
       } else if (!comparePassword) {
         throw new Error("Incorrect Password");
       }
