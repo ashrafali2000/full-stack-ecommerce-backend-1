@@ -1,5 +1,6 @@
 const express = require("express");
 // const bodyParser = require("body-parser")
+const chalk = require("chalk")
 const cors = require('cors');
 const indexRoute = require("./routes/index");
 const product = require("./routes/products");
@@ -37,7 +38,7 @@ app.use("/", user);
 const db = mongoose.connection;
 db.on("error",console.error.bind( console, "Connection Error"));
 db.once("open", function (){
-  console.log("db Connected");
+  console.log(chalk.bgGreen("db Connected"));
 })
 
 app.listen(port, (req, res) => {
