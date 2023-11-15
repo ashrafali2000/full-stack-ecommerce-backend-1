@@ -1,5 +1,7 @@
  const User = require("../models/user");
  const bcrypt = require("bcrypt");
+
+//  Create User
  const createUser = async (data) => {
     try{
         const hashPassword = await bcrypt.hash(data.password, 12)
@@ -11,10 +13,17 @@
     }
  }
 
+// Login User
  const loginUser = async (data) => {
+    try{
         const found = await User.findOne({email:data.email});
         if(found){
-        return "Login Successfull";
+        return "Login Successful";
+        }else{
+        return "User not Found";
         }
+    }catch(err){
+      throw err;
+    }
  }
 module.exports = {createUser, loginUser};
