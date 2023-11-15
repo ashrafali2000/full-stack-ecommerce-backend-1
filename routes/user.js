@@ -1,20 +1,15 @@
 const express = require("express");
 const router = express.Router();
-// const users = require("../db/user.json");
-// const { createUser } = require("../controllers/auth");
-
-// get all user Api
-// router.get("/", (req, res) => {
-//   res.send(users);
-// });
+const User = require("../models/user")
 
 // user Create Controller
-router.post("/",  (req, res) => {
- 
-    const { firstName, lastName, email, password } = req.body;
-   
-    // res.status(200).send(user);
-    console.log("req---->", req.body)
-    res.status(200).send({message:"success"});
+router.post("/",  async(req, res) => {
+  try{
+    const user = new User(req.body);
+    await user.save()
+     return res.status(200).send({status:200, message:"success"});
+  }catch(err){
+   return res.status(400).send({status:400, message: err.message})
+  }
 });
 module.exports = router;
