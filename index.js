@@ -6,7 +6,7 @@ const product = require("./routes/products");
 const signUp = require("./routes/signUp");
 const signIn = require("./routes/signIn");
 const user = require("./routes/user");
-const mongoose = require("./db/index")
+const mongoose = require("./config/index")
 
 const app = express();
 const path = require("path");
