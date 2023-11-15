@@ -1,12 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const { createUser } = require("../controllers/user");
+const { createUser, userFind } = require("../controllers/user");
 
 // user Create Controller
-router.post("/",  async (req, res) => {
+router.post("/signup",  async (req, res) => {
   try{
     const {name, email, phone, password} = req.body;
     const response = await createUser({name, email, phone, password});
+   return res.status(200).send({status:200, message: response});
+  }catch(err){
+   return res.status(400).send({status:400, message:err.message});
+  }
+});
+
+router.post("/login",  async (req, res) => {
+  try{
+    const { email, password} = req.body;
+    const response = await userFind({email});
    return res.status(200).send({status:200, message: response});
   }catch(err){
    return res.status(400).send({status:400, message:err.message});

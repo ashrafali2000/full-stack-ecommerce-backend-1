@@ -10,4 +10,13 @@
         return "User Already Exist";
     }
  }
-module.exports = {createUser};
+
+ const userFind = async (data) => {
+        const found = await User.findOne({email:data.email});
+        if(found){
+       //  console.log("Login Successfull", user)
+       console.log(found)
+        return "Login Successfull";
+        }
+ }
+module.exports = {createUser, userFind};

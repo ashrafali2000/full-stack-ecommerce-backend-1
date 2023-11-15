@@ -28,7 +28,7 @@ app.use(express.static(path.join(process.cwd(), "public")))
 // app.use("/products", product);
 
 // Users MiddleWare
-app.use("/signup", user);
+app.use("/", user);
 
 // SignIn MiddleWare
 // app.use("/login", signIn);
