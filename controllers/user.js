@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-
+const jwt = require("jsonwebtoken");
 //  Create User
 const createUser = async (data) => {
   try {
@@ -17,14 +17,15 @@ const createUser = async (data) => {
 const loginUser = async (data) => {
   try {
     const { email, password } = data;
-    const userFound = await User.findOne({ email });
+    const userFound = await User.findOne({ email }).then(res => res.toObject());
     if (userFound) {
       const comparePassword = await bcrypt.compare(
         password,
         userFound.password
       );
       if (comparePassword) {
-        return "Login Successful";
+        delete userFound.password;
+        return ("Login Successful", userFound);
       } else if (!comparePassword) {
         throw new Error("Incorrect Password");
       }

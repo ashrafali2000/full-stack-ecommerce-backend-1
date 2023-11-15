@@ -16,7 +16,7 @@ const { Schema } = mongoose;
     },
     password:{
         type:Schema.Types.String,
-        require:true
+        require:true,
     }
  })
 
