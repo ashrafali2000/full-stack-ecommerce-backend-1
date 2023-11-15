@@ -11,10 +11,10 @@
     }
  }
 
- const userFind = async (data) => {
+ const loginUser = async (data) => {
         const found = await User.findOne({email:data.email});
         if(found){
         return "Login Successfull";
         }
  }
-module.exports = {createUser, userFind};
+module.exports = {createUser, loginUser};
