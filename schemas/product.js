@@ -16,6 +16,10 @@ const { Schema } = mongoose;
     category:{
         type:Schema.Types.String,
         require:true
+    },
+    rating:{
+        type:Schema.Types.Number,
+        require:true
     }
  })
 
