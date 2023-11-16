@@ -1,38 +1,25 @@
 const express = require("express");
-// const bodyParser = require("body-parser")
 const chalk = require("chalk")
 const cors = require('cors');
-const indexRoute = require("./routes/index");
 const product = require("./routes/products");
-const signUp = require("./routes/signUp");
-const signIn = require("./routes/signIn");
 const user = require("./routes/user");
 const mongoose = require("./config/index")
-
 const app = express();
-const path = require("path");
-// const signInjs = ;
 app.use(cors());
 const port = 8000;
-
-// app.use(bodyParser.urlencoded({extends:false}))
 app.use(express.json());
 
-app.use(express.static(path.join(process.cwd(), "public")))
-
-
-// Controller
-// app.use("/", indexRoute);
+// const bodyParser = require("body-parser")
+// app.use(bodyParser.urlencoded({extends:false}))
+// const path = require("path");
+// app.use(express.static(path.join(process.cwd(), "public")))
 
 
 // Products MiddleWare
-// app.use("/products", product);
+app.use("/", product);
 
 // Users MiddleWare
 app.use("/", user);
-
-// SignIn MiddleWare
-// app.use("/login", signIn);
 
 // db CONNECTION
 const db = mongoose.connection;

@@ -7,8 +7,8 @@ const {joiUSerSchema} = require("../schemas/user");
 router.post("/signup",  async (req, res) => {
   try{
     await joiUSerSchema.validateAsync(req.body);
-    const {name, email, phone, password} = req.body;
-    const response = await createUser({name, email, phone, password});
+    const {firstName,lastName, email, password} = req.body;
+    const response = await createUser({firstName,lastName, email, password});
    return res.status(200).send({status:200, message: response});
   }catch(err){
    return res.status(400).send({status:400, message:err.message});

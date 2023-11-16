@@ -20,7 +20,10 @@ const { Schema } = mongoose;
     rating:{
         type:Schema.Types.Number,
         require:true
-    }
+    },
+    images:[{
+        type:Schema.Types.String
+    }]
  })
 
  module.exports = ProductSchema

@@ -1,55 +1,37 @@
-// const express = require("express");
-// const router = express.Router();
-// const path = require("path");
-// // const allProducts = require("../db/products.json");
-// const { addProduct, findProduct } = require("../models/product");
+const express = require("express");
+const router = express.Router();
+const { getAllProducts, addProduct } = require("../controllers/products");
 
-// const productFile = path.join(process.cwd(), "views", "newProduct.html");
+// get all Products Api
+router.get("/products", async (req, res) => {
+  const products = await getAllProducts();
+  res.send(products);
+});
 
-// // get all Products Api
-// router.get("/", (req, res) => {
-//   res.send(allProducts);
-// });
+// Dynamic routing (search any product)
+router.get("/:p", async (req, res) => {
+  const searchProduct = req.params.p;
+  const dynamicProduct = await findProduct(searchProduct);
+  res.send(dynamicProduct);
+});
 
-// // get add Product file
-// router.get("/add", (req, res) => {
-//   res.sendFile(productFile);
-// });
+// post product method or controller
+router.post("/products", async (req, res) => {
+  try {
+    const { title, description, price, category, rating, images } =
+      req.body;
+    const response = await addProduct({
+      title,
+      description,
+      price,
+      rating,
+      category,
+      images,
+    });
+    res.status(200).send({ status: 200, message: response });
+  } catch (err) {
+    res.status(400).send({ status: 400, message: err.message });
+  }
+});
 
-// // Dynamic routing (search any product)
-// router.get("/:p", async (req, res) => {
-//   const searchProduct = req.params.p;
-//   const dynamicProduct = await findProduct(searchProduct);
-//   res.send(dynamicProduct);
-// });
-
-// // post product method or controller
-// router.post("/", (req, res) => {
-//   const {
-//     title,
-//     description,
-//     price,
-//     discountPercentage,
-//     rating,
-//     stock,
-//     brands,
-//     category,
-//     thumbnail,
-//     images,
-//   } = req.body;
-//   addProduct({
-//     title,
-//     description,
-//     price,
-//     discountPercentage,
-//     rating,
-//     stock,
-//     brands,
-//     category,
-//     thumbnail,
-//     images: [images],
-//   });
-//   res.status(200).send({ status: 200, message: "Product added sucessfully" });
-// });
-
-// module.exports = router;
+module.exports = router;

@@ -10,7 +10,11 @@ const joiUSerSchema = Joi.object({
 })
 
  const UserSchema  = new Schema({
-    name:{
+    firtName:{
+        type:Schema.Types.String,
+        require:true
+    },
+    lastName:{
         type:Schema.Types.String,
         require:true
     },
@@ -18,10 +22,6 @@ const joiUSerSchema = Joi.object({
         type:Schema.Types.String,
         require:true,
         unique:true
-    },
-    phone:{
-        type:Schema.Types.Number,
-        require:true
     },
     password:{
         type:Schema.Types.String,
