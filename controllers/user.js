@@ -18,7 +18,8 @@ const createUser = async (data) => {
 const loginUser = async (data) => {
   try {
     const { email, password } = data;
-    const userFound = await User.findOne({ email }).then(res => res.toObject());
+    // const userFound = await User.findOne({ email }).then(res => res.toObject());
+    const userFound = await User.findOne({ email });
     if (userFound) {
       const comparePassword = await bcrypt.compare(
         password,

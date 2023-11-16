@@ -3,14 +3,14 @@ const { Schema } = mongoose;
 const Joi = require("joi")
 
 const joiUSerSchema = Joi.object({
-    name:Joi.string().required().min(7),
+    firstName:Joi.string().required().min(7),
+    lastName:Joi.string().required().min(7),
     email:Joi.string().required().email(),
-    phone:Joi.number().optional().max(10),
     password:Joi.string().min(6).required()
 })
 
  const UserSchema  = new Schema({
-    firtName:{
+    firstName:{
         type:Schema.Types.String,
         require:true
     },
