@@ -16,7 +16,7 @@ app.use(express.json());
 
 
 // Products MiddleWare
-app.use("/", product);
+app.use("/products", product);
 
 // Users MiddleWare
 app.use("/", user);

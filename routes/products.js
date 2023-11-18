@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { getAllProducts, addProduct } = require("../controllers/products");
+const { getAllProducts, addProduct, findProduct } = require("../controllers/products");
 
 // get all Products Api
-router.get("/products", async (req, res) => {
+router.get("/", async (req, res) => {
   const products = await getAllProducts();
   res.send(products);
 });

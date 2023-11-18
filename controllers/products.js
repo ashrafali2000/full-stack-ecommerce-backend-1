@@ -19,5 +19,9 @@ const getAllProducts = async () => {
         return "some thing wrong";
     }
 }
-
-module.exports = { getAllProducts, addProduct };
+const findProduct = async(searchProduct) => {
+  const products = await getAllProducts();
+  const allQueryProducts = products.filter(p => p.title.toLowerCase() === searchProduct);
+return allQueryProducts;
+}
+module.exports = { getAllProducts, addProduct, findProduct};
