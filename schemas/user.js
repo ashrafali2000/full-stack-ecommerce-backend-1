@@ -12,20 +12,20 @@ const joiUSerSchema = Joi.object({
  const UserSchema  = new Schema({
     firstName:{
         type:Schema.Types.String,
-        require:true
+        required:true
     },
     lastName:{
         type:Schema.Types.String,
-        require:true
+        required:true
     },
     email:{
         type:Schema.Types.String,
-        require:true,
+        required:true,
         unique:true
     },
     password:{
         type:Schema.Types.String,
-        require:true,
+        required:true,
     }
  })
 
