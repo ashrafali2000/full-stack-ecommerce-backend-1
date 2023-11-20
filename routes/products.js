@@ -16,7 +16,7 @@ router.get("/:p", async (req, res) => {
 });
 
 // post product method or controller
-router.post("/products", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { title, description, price, category, rating, images } =
       req.body;
