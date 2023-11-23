@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { getAllProducts, addProduct, findProduct } = require("../controllers/products");
-
+const verifyToken = require("../middleware/verifyToken")
 // get all Products Api
-router.get("/", async (req, res) => {
+router.get("/",verifyToken, async (req, res) => {
   const products = await getAllProducts();
   res.send(products);
 });

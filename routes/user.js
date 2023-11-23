@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { createUser, loginUser } = require("../controllers/user");
+const verifyToken = require("../middleware/verifyToken")
 const Joi = require("joi")
 
 // JOI Schema
@@ -23,7 +24,7 @@ router.post("/signup",  async (req, res) => {
 });
 
 // user LoginUser Controller
-router.post("/login",  async (req, res) => {
+router.post("/login", verifyToken, async (req, res) => {
   try{
     const { email, password} = req.body;
     const response = await loginUser({email, password});
