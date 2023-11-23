@@ -1,8 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const { createUser, loginUser } = require("../controllers/user");
-const {joiUSerSchema} = require("../schemas/user");
+const Joi = require("joi")
 
+// JOI Schema
+const joiUSerSchema = Joi.object({
+  firstName:Joi.string().required().min(7),
+  lastName:Joi.string().required().min(7),
+  email:Joi.string().required().email(),
+  password:Joi.string().min(6).required()
+})
 // user CreateUser Controller
 router.post("/signup",  async (req, res) => {
   try{
