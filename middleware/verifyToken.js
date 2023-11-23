@@ -2,10 +2,13 @@ const jwt = require("jsonwebtoken");
 const { jwtSecretKey } = require("../constants/constant");
 
 const verifyToken = (req, res, next) => {
-  console.log("Res------->");
+    const { authorization } = req.headers;
+    const token = authorization.split(" ")[1];
   jwt.verify(token, jwtSecretKey, function(err, decoded) {
-    console.log(decoded.foo) // bar
+      if(err){
+     res.status(401).send({err})
+    }
+   return next()
   })
-  next();
 };
 module.exports = verifyToken;
