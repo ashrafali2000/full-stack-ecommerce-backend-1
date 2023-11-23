@@ -24,7 +24,7 @@ router.post("/signup",  async (req, res) => {
 });
 
 // user LoginUser Controller
-router.post("/login", verifyToken, async (req, res) => {
+router.post("/login", async (req, res) => {
   try{
     const { email, password} = req.body;
     const response = await loginUser({email, password});
