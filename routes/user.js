@@ -5,8 +5,8 @@ const Joi = require("joi")
 
 // JOI Schema
 const joiUSerSchema = Joi.object({
-  firstName:Joi.string().required().min(7),
-  lastName:Joi.string().required().min(7),
+  firstName:Joi.string().required().min(5),
+  lastName:Joi.string().required().min(3),
   email:Joi.string().required().email(),
   password:Joi.string().min(6).required()
 })
