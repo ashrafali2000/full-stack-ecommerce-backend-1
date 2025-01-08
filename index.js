@@ -3,7 +3,8 @@ const chalk = require("chalk")
 const cors = require('cors');
 const product = require("./routes/products");
 const user = require("./routes/user");
-const mongoose = require("./config/index")
+const mongoose = require("mongoose");
+// const mongoose = require("./config/index")
 const app = express();
 app.use(cors());
 const port = 8000;
