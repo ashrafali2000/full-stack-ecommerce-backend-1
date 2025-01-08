@@ -13,11 +13,20 @@ app.use(express.json());
 // const path = require("path");
 // app.use(express.static(path.join(process.cwd(), "public")))
 // db CONNECTION
-const db = mongoose.connection;
-db.on("error",console.error.bind( console, "Connection Error"));
-db.once("open", function (){
-  console.log(chalk.bgGreen("db Connected"));
-})
+// const db = mongoose.connection;
+// db.on("error",console.error.bind( console, "Connection Error"));
+// db.once("open", function (){
+//   console.log(chalk.bgGreen("db Connected"));
+// })
+const DB_URI = process.env.DB_URI;
+mongoose
+  .connect(DB_URI)
+  .then(() => {
+    console.log("DataBase is connected--->");
+  })
+  .catch((err) => {
+    console.log("err------>", err);
+  });
 app.get("/", (req, res) => {
   res.send("Server is running....");
 });
